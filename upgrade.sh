@@ -12,3 +12,8 @@ if [ "$1" = "--reload-wsgi" ];
     then
     touch app/wsgi.py
 fi
+
+if [ "$1" = "--cron" ];
+    then
+    sudo cp /srv/ircam-www/etc/cron.d/app /etc/cron.d/ircam-www
+fi
