@@ -6,8 +6,8 @@ export MYSQL="$(dpkg --get-selections  | grep mysql 2>&1)"
 
 if [ ! -z "$MYSQL" ];
     then
-    export MYSQL_PWD=$MYSQL_PASSWORD
-    mysql -h db $MYSQL_DATABASE -u$MYSQL_USER < /srv/backup/mariadb.dump
+    export MYSQL_PWD=$MYSQL_ROOT_PASSWORD
+    mysql -h db $MYSQL_DATABASE -uroot < /srv/backup/mariadb.dump
 elif [ ! -z "$POSTGRES" ];
     then
     export PGUSER="postgres"
