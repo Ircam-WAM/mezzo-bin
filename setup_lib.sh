@@ -1,9 +1,11 @@
 #!/bin/bash
 
-echo 'ok'
 ls /srv/lib/
 for module in `ls /srv/lib/`; do
 	cd /srv/lib/$module
-	echo "/srv/lib/$module"
-	python setup.py develop
+	if [ -f 'requirements.txt' ]; then
+		pip install -r requirements.txt
+	else
+		python setup.py develop
+	fi
 done
