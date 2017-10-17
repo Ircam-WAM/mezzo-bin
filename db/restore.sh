@@ -10,10 +10,10 @@ if [ ! -z "$MYSQL" ];
     mysql -h db $MYSQL_DATABASE -uroot < /srv/backup/mariadb.dump
 elif [ ! -z "$POSTGRES" ];
     then
-    export PGUSER="postgres"
+    # export PGUSER="postgres"
     export PGPASSWORD=$POSTGRES_PASSWORD
-    export PGDATABASE="postgres"
-    pg_restore -c -Fc -hdb /srv/backup/postgres.dump
+    # export PGDATABASE="postgres"
+    pg_restore -c -hdb -Upostgres -dpostgres  /srv/backup/postgres.dump
 fi
 
 echo "Restore done!"
