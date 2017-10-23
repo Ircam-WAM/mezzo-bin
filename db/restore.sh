@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # import dump functions of the database (postgres or mysql)
-export POSTGRES="$(dpkg --get-selections  | grep postgres 2>&1)"
-export MYSQL="$(dpkg --get-selections  | grep mysql 2>&1)"
+# export POSTGRES="$(dpkg --get-selections  | grep postgres 2>&1)"
+# export MYSQL="$(dpkg --get-selections  | grep mysql 2>&1)"
 
-if [ ! -z "$MYSQL" ];
+if [ ! -z "$MYSQL_ROOT_PASSWORD" ];
     then
     export MYSQL_PWD=$MYSQL_ROOT_PASSWORD
     mysql -h db $MYSQL_DATABASE -uroot < /srv/backup/mariadb.dump
-elif [ ! -z "$POSTGRES" ];
+elif [ ! -z "$POSTGRES_PASSWORD" ];
     then
     export PGUSER="postgres"
     export PGPASSWORD=$POSTGRES_PASSWORD
