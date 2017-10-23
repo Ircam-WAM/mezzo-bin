@@ -4,16 +4,12 @@
 # export POSTGRES="$(dpkg --get-selections  | grep postgres 2>&1)"
 # export MYSQL="$(dpkg --get-selections  | grep mysql 2>&1)"
 
-if [ ! -z "$MYSQL_ROOT_PASSWORD" ];
-    then
+if [ ! -z "$MYSQL_ROOT_PASSWORD" ]; then
     export MYSQL_PWD=$MYSQL_ROOT_PASSWORD
-    mysql -h db $MYSQL_DATABASE -uroot < /srv/backup/mariadb.dump
-elif [ ! -z "$POSTGRES_PASSWORD" ];
-    then
-    export PGUSER="postgres"
+    gunzip < /srv/backup/mariadb.dump | mysql -h db $MYSQL_DATABASE -uroot
+elif [ ! -z "$POSTGRES_PASSWORD" ]; then
     export PGPASSWORD=$POSTGRES_PASSWORD
-    export PGDATABASE="postgres"
-    pg_restore -c -Fc -hdb /srv/backup/postgres.dump
+    pg_restore -c -hdb -Upostgres -dpostgres  /srv/backup/postgres.dump
 fi
 
 echo "Restore done!"
