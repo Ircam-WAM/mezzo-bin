@@ -16,7 +16,7 @@ then
     curr_branch="dev"
 fi
 
-echo $curr_branch
+
 #Synchronizes submodules' remote URL configuration setting to the value specified in .gitmodules
 git submodule sync
 # Checkout all submodules on right branches specified in .gitmodules, by default the branch is master
