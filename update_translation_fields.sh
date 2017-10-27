@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker-compose run app python /srv/app/manage.py update_translation_fields
+git submodule update --recursive --remote
