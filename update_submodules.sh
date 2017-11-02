@@ -17,7 +17,9 @@ then
 fi
 
 
-#Synchronizes submodules' remote URL configuration setting to the value specified in .gitmodules
+# checkout new submodule
+git submodule update --init
+# Synchronizes submodules' remote URL configuration setting to the value specified in .gitmodules
 git submodule sync
 # Checkout all submodules on right branches specified in .gitmodules, by default the branch is master
 git submodule foreach --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch-'$curr_branch' || echo master)'
