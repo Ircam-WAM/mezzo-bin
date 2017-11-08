@@ -6,7 +6,7 @@
 
 if [ ! -z "$MYSQL_PASSWORD" ]; then
     export MYSQL_PWD=$MYSQL_PASSWORD
-    mysqldump $MYSQL_DATABASE -hdb -u$MYSQL_USER | gzip > /srv/backup/mariadb.dump
+    mysqldump $MYSQL_DATABASE -hdb -u$MYSQL_USER | gzip > /srv/backup/mariadb.dump.gz
 elif [ ! -z "$POSTGRES_PASSWORD" ]; then
     export PGPASSWORD=$POSTGRES_PASSWORD
     pg_dump -Fc -hdb -Upostgres -dpostgres > /srv/backup/postgres.dump
