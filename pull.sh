@@ -16,5 +16,3 @@ if [ "$1" = "--restore-db" ];
     docker-compose run db /srv/bin/db/restore.sh
 fi
 
-# Build front-end
-docker-compose run app python /srv/app/manage.py build-front
