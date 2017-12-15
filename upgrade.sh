@@ -7,7 +7,10 @@ git pull
 ./bin/update_submodules.sh
 
 # Apply migrations
-docker-compose run app python /srv/app/manage.py migrate
+if [ "$1" = "--migrate" ];
+    then
+    docker-compose run app python /srv/app/manage.py migrate
+fi
 
 # Build front-end
 ./bin/build_front.sh
