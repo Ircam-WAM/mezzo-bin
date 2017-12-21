@@ -19,7 +19,7 @@ fi
 docker-compose run app bash /srv/doc/build.sh
 
 # Reload Wsgi
-if [ "$1" = "--reload-wsgi" ];
+if [ "$1" = "-r" ];
     then
     touch app/wsgi.py
 fi
