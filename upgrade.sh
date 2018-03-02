@@ -27,5 +27,5 @@ fi
 # Install local cron to
 if [ "$1" = "--cron" ];
     then
-    sudo cp /srv/ircam-www/etc/cron.d/app /etc/cron.d/ircam-www
+    sudo cp ./etc/cron.d/* /etc/cron.d/
 fi
