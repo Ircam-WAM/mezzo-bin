@@ -18,5 +18,8 @@ if [ "$1" = "--restore-db" ]; then
 fi
 
 # We need to chown folders as they are docker's volumes
-sudo chown -R www-data var/media
-sudo chown -R root var/backup
+# (do not work on OSX, hence the test)
+if ! uname -a | grep Darwin > /dev/null; then
+  sudo chown -R www-data var/media
+  sudo chown -R root var/backup
+fi
