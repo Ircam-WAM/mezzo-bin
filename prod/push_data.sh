@@ -1,7 +1,13 @@
+#!/bin/bash
+
 echo "----------------------------"
 echo `date +\%Y\%m\%d-\%H-\%M-\%S`
-docker-compose run db /srv/bin/db/backup.sh
-git add var
+
+./backup_db.sh
+
+cd "$(dirname "$0")"/../../var
+
+git add .
 git commit -a -m "update DB and media"
 git pull
 git push

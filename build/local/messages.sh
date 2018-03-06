@@ -1,4 +1,5 @@
 # docker-compose run app python manage.py compilemessages
+
 cd /srv
 
 find $(pwd)  -type d -name 'locale' -print | while read f; do
