@@ -20,15 +20,8 @@ function update_git_urls {
     find ./ -type f \( -name ".gitmodules" -o -name "config" \)  -exec sed -i $REGEX {} +
 }
 
-if [ "$1" = "--ssh" ]; then
-    REGEX='s/https:\/\/github.com\//git@github.com:/g'
-    update_git_urls
-fi
-
-if [ "$1" = "--https" ]; then
-    REGEX='s/git@github.com:/https:\/\/github.com\//g'
-    update_git_urls
-fi
+REGEX='s/git@github.com:/https:\/\/github.com\//g'
+update_git_urls
 
 # checkout new submodule
 git submodule update --init

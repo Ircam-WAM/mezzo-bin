@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "$(dirname "$0")"/../../
+
 # Update main project
 git pull
 
@@ -13,7 +15,7 @@ fi
 
 # Build front-end
 if [ "$1" = "--front" ]; then
-    ./bin/build_front.sh
+    docker-compose run app python /srv/app/manage.py build-front
 fi
 
 # Build documentation
