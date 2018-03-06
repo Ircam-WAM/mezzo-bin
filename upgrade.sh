@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Update main project
 git pull
@@ -7,25 +7,31 @@ git pull
 ./bin/update_submodules.sh
 
 # Apply migrations
-if [ "$1" = "--migrate" ];
-    then
+if [ "$1" = "--migrate" ]; then
     docker-compose run app python /srv/app/manage.py migrate
 fi
 
 # Build front-end
-./bin/build_front.sh
+if [ "$1" = "--front" ]; then
+    ./bin/build_front.sh
+fi
 
 # Build documentation
-docker-compose run app bash /srv/doc/build.sh
+if [ "$1" = "--doc" ]; then
+    docker-compose run app bash /srv/doc/build.sh
+fi
+
+# Collect static files
+if [ "$1" = "--collect" ]; then
+    docker-compose run app python manage.py collectstatic --noinput
+fi
 
 # Reload Wsgi
-if [ "$1" = "-r" ];
-    then
+if [ "$1" = "--reload" ]; then
     touch app/wsgi.py
 fi
 
 # Install local cron to
-if [ "$1" = "--cron" ];
-    then
-    sudo cp /srv/ircam-www/etc/cron.d/app /etc/cron.d/ircam-www
+if [ "$1" = "--cron" ]; then
+    sudo cp ./etc/cron.d/* /etc/cron.d/
 fi

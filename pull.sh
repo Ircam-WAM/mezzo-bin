@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+cd "$(dirname "$0")"/../
 
 # We need to chown folders as they are docker's volumes
 sudo chown -R $USER var/media
@@ -11,8 +13,7 @@ git pull
 ./bin/update_submodules.sh
 
 # Restore database
-if [ "$1" = "--restore-db" ];
-    then
+if [ "$1" = "--restore-db" ]; then
     docker-compose run db /srv/bin/db/restore.sh
 fi
 
