@@ -2,11 +2,8 @@
 
 cd "$(dirname "$0")"/../../
 
-# Update main project
-git pull
-
-# Update submodules
-./bin/update_submodules.sh
+# Update main project and submodules
+./bin/prod/update.sh
 
 # Apply migrations
 if [ "$1" = "--migrate" ]; then

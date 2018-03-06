@@ -6,11 +6,8 @@ cd "$(dirname "$0")"/../../
 sudo chown -R $USER var/media
 sudo chown -R $USER var/backup
 
-# Update main project
-git pull
-
-# Update submodules
-./bin/dev/update_submodules.sh
+# Update main project and submodules
+./bin/dev/update.sh
 
 # Restore database
 if [ "$1" = "--restore-db" ]; then

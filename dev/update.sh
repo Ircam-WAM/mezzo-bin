@@ -8,6 +8,11 @@
 # In main project, if you are in another branch than master or dev, it will take by default dev branch
 # If you don't define any branches for you submodule, the script will update from master
 
+cd "$(dirname "$0")"/../../
+
+# Update main project
+git pull
+
 curr_branch=$(git symbolic-ref --short HEAD)
 
 echo $curr_branch
