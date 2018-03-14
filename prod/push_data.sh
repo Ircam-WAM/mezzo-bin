@@ -3,7 +3,7 @@
 echo "----------------------------"
 echo `date +\%Y\%m\%d-\%H-\%M-\%S`
 
-./backup_db.sh
+./bin/prod/backup_db.sh
 
 cd "$(dirname "$0")"/../../var
 
