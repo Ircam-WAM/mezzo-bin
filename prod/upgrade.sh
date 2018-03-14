@@ -5,7 +5,7 @@ cd "$(dirname "$0")"/../../
 
 
 function usage() {
-    echo "Script to upgrade the Mezzo instance with various options"
+    echo "upgrade the Mezzo production instance with various options"
     echo ""
     echo "./upgrade.sh"
     echo "  -h --help"
