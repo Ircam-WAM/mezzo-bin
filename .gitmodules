@@ -1,3 +1,3 @@
 [submodule "docker-composition-installer"]
 	path = install
-	url = https://github.com/yomguy/docker-composition-installer.git
+	url = git@github.com:yomguy/docker-composition-installer.git
