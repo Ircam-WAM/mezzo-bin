@@ -21,13 +21,6 @@ then
     curr_branch="dev"
 fi
 
-function update_git_urls {
-    find ./ -type f \( -name ".gitmodules" -o -name "config" \)  -exec sed -i $REGEX {} +
-}
-
-REGEX='s/https:\/\/github.com\//git@github.com:/g'
-update_git_urls
-
 # checkout new submodule
 git submodule update --init
 # Synchronizes submodules' remote URL configuration setting to the value specified in .gitmodules
