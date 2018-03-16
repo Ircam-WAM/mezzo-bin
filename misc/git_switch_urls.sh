@@ -11,7 +11,7 @@
 cd "$(dirname "$0")"/../../
 
 function usage() {
-    echo "switch all git URLs to SSH or HTTPS and vice versa"
+    echo "switch all git URLs from SSH to HTTPS and vice versa"
     echo ""
     echo "./git_switch_urls.sh"
     echo "  -h --help"
