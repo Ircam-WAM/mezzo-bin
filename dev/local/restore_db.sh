@@ -4,6 +4,10 @@
 # export POSTGRES="$(dpkg --get-selections  | grep postgres 2>&1)"
 # export MYSQL="$(dpkg --get-selections  | grep mysql 2>&1)"
 
+# wait for db
+/srv/bin/misc/wait.sh
+
+# import database functions of type
 if [ ! -z "$MYSQL_ROOT_PASSWORD" ]; then
     export MYSQL_PWD=$MYSQL_ROOT_PASSWORD
     gunzip < /srv/backup/mariadb.dump.gz | mysql -h db $MYSQL_DATABASE -uroot
