@@ -5,7 +5,7 @@
 # export MYSQL="$(dpkg --get-selections  | grep mysql 2>&1)"
 
 # wait for db
-/srv/bin/misc/wait.sh
+# /srv/bin/misc/wait.sh
 
 # import database functions of type
 if [ ! -z "$MYSQL_ROOT_PASSWORD" ]; then
