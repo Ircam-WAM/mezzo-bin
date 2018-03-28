@@ -1,13 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
-host=$(env | grep _TCP_ADDR | cut -d = -f 2)
-port=$(env | grep _TCP_PORT | cut -d = -f 2)
+apt update
+apt install -y netcat
 
-echo -n "waiting for TCP connection to $host:$port..."
+HOST=db
+PORT=5432
 
-while ! nc -w 1 $host $port 2>/dev/null
+echo -n "waiting for TCP connection to $HOST:$PORT..."
+
+while ! nc -w 1 $HOST $PORT 2>/dev/null
 do
   echo -n .
   sleep 1
