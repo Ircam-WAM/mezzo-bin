@@ -2,8 +2,6 @@
 
 cd "$(dirname "$0")"/../../
 
-
-
 function usage() {
     echo "upgrade the Mezzo production instance with various options"
     echo ""

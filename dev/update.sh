@@ -10,11 +10,7 @@
 
 cd "$(dirname "$0")"/../../
 
-# We need to chown folders as they are docker's volumes
-if ! uname -a | grep Darwin > /dev/null; then
-    sudo chown -R $USER var/media
-    sudo chown -R $USER var/backup
-fi
+bin/misc/fix_var_perms.sh
 
 # Update main project
 git pull
