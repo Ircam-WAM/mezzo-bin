@@ -10,4 +10,5 @@
 
 cd "$(dirname "$0")"/../../
 
+git status
 git submodule foreach --recursive 'git status'
