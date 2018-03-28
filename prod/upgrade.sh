@@ -12,7 +12,7 @@ function usage() {
     echo "  -f --front : build frontend"
     echo "  -d --doc : build documentation"
     echo "  -c --collect : collect static files"
-    echo "  -r --reload : reload Wsgi"
+    echo "  -r --reload : reload wsgi"
     echo "  -n --cron : install local cron to host"
     echo ""
 }
