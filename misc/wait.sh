@@ -5,8 +5,8 @@ set -e
 apt update
 apt install -y netcat
 
-HOST=db
-PORT=5432
+HOST=$(env | grep _TCP_ADDR | cut -d = -f 2)
+PORT=$(env | grep _TCP_PORT | cut -d = -f 2)  
 
 echo -n "waiting for TCP connection to $HOST:$PORT..."
 
