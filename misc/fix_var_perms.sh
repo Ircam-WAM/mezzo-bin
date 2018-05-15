@@ -11,7 +11,7 @@ if ! uname -a | grep Darwin > /dev/null; then
         INFO=( $(stat -L -c "%a %G %U" $folder) )
         OWNER=${INFO[2]}
         if [ "$OWNER" != "$USER" ]; then
-            sudo chown $USER $folder
+            sudo chown -R $USER $folder
         fi
     done
 fi
