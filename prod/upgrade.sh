@@ -8,6 +8,7 @@ function usage() {
     echo "./upgrade.sh"
     echo "  -h --help"
     echo "  -u --update : update main project and submodules"
+    echo "  -uhr --update-hard-reset : update and hard reset main project and submodules"
     echo "  -m --migrate : apply migrations"
     echo "  -f --front : build frontend"
     echo "  -d --doc : build documentation"
@@ -27,6 +28,9 @@ while [ "$1" != "" ]; do
             ;;
         -u | --update)
             ./bin/prod/update.sh
+            ;;
+        -uhr | --update-hard-reset)
+            ./bin/prod/update.sh -hr
             ;;
         -m | --migrate)
             docker-compose run app python /srv/app/manage.py migrate
