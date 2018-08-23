@@ -10,5 +10,6 @@ git pull
 
 # Restore database
 if [ "$1" = "--restore-db" ]; then
-    docker-compose run db /srv/bin/dev/restore_db.sh
+    cd ..
+    bin/dev/restore_db_only.sh
 fi
