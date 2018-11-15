@@ -1,5 +1,7 @@
 #!/bin/bash
 
+/srv/bin/wait-for-it/wait-for-it.sh -h localhost -p $DB_PORT;
+
 set -e
 
 echo "Restoring..."
