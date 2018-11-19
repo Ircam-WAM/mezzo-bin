@@ -2,5 +2,5 @@
 	path = install
 	url = https://github.com/yomguy/docker-composition-installer.git
 [submodule "wait-for-it"]
-	path = wait-for-it
+	path = misc/wait-for-it
 	url = https://github.com/vishnubob/wait-for-it.git
