@@ -38,6 +38,9 @@ while [ "$1" != "" ]; do
         -f | --front)
             docker-compose run app python /srv/app/manage.py build-front
             ;;
+        -fi | --front-install)
+            docker-compose run app python /srv/app/manage.py build-front --force-npm --force-bower
+            ;;
         -d | --doc)
             docker-compose run app bash /srv/doc/build.sh
             ;;
