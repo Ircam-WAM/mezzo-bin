@@ -10,7 +10,7 @@
 
 cd "$(dirname "$0")"/../../
 
-bin/misc/git_switch_urls.sh --ssh
+bin/git/switch_urls.sh --ssh
 git push
 git submodule foreach --recursive 'git push'
-bin/misc/git_switch_urls.sh --https
+bin/git/switch_urls.sh --https
