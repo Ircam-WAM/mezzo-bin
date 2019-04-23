@@ -8,7 +8,7 @@ cd "$(dirname "$0")"/../../var/
 
 git reset --hard origin/master
 git pull origin master
-sudo chown -R www-data media static
+sudo chown -R www-data: media static
 
 # Restore database
 if [ "$1" = "--restore-db" ]; then
