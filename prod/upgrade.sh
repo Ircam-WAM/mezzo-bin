@@ -33,7 +33,7 @@ while [ "$1" != "" ]; do
             ./bin/prod/update.sh -hr
             ;;
         -m | --migrate)
-            docker-compose run app python /srv/app/manage.py migrate
+            docker-compose run app python /srv/app/manage.py migrate --noinput
             ;;
         -f | --front)
             docker-compose run app python /srv/app/manage.py build-front
