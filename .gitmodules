@@ -1,6 +1,6 @@
 [submodule "install"]
 	path = install
-	url = git@github.com:yomguy/docker-composition-installer.git
+	url = https://github.com/Ircam-Web/docker-composition-installer.git
 [submodule "wait-for-it"]
 	path = misc/wait-for-it
-	url = git@github.com:vishnubob/wait-for-it.git
+	url = https://github.com/Ircam-Web/wait-for-it.git
