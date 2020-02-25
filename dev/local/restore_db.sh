@@ -1,6 +1,6 @@
 #!/bin/bash
 
-/srv/bin/misc/wait-for-it/wait-for-it.sh -h localhost -p $DB_PORT;
+/srv/bin/misc/wait-for-it/wait-for-it.sh -h db -p $DB_PORT;
 
 set -e
 
