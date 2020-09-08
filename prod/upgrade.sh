@@ -35,6 +35,9 @@ while [ "$1" != "" ]; do
         -m | --migrate)
             docker-compose run app python /srv/app/manage.py migrate --noinput
             ;;
+        -i | --install)
+            docker-compose exec app poetry install --no-root
+            ;;
         -f | --front)
             docker-compose run app python /srv/app/manage.py build-front
             ;;
