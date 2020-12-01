@@ -13,7 +13,7 @@ cd "$(dirname "$0")"/../../
 function usage() {
     echo "switch all git URLs from SSH to HTTPS and vice versa"
     echo ""
-    echo "./git_switch_urls.sh"
+    echo "./switch_urls.sh"
     echo "  -h --help"
     echo "  -s --ssh : switch all repositories to SSH"
     echo "  -t --https : switch all repositories to HTTPS"
@@ -37,9 +37,13 @@ while [ "$1" != "" ]; do
         -s | --ssh)
             REGEX='s/https:\/\/github.com\//git@github.com:/g'
             update_git_urls
+            REGEX='s/https:\/\/forge-2.ircam.fr\//git@forge-2.ircam.fr:/g'
+            update_git_urls
             ;;
         -t | --https)
             REGEX='s/git@github.com:/https:\/\/github.com\//g'
+            update_git_urls
+            REGEX='s/git@forge-2.ircam.fr:/https:\/\/forge-2.ircam.fr\//g'
             update_git_urls
             ;;
         *)
