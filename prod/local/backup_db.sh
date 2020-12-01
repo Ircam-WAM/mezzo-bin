@@ -9,7 +9,10 @@ if [ ! -z "$MYSQL_PASSWORD" ]; then
     mysqldump $MYSQL_DATABASE -hdb -u$MYSQL_USER | gzip > /srv/backup/mariadb.dump.gz
 elif [ ! -z "$POSTGRES_PASSWORD" ]; then
     export PGPASSWORD=$POSTGRES_PASSWORD
-    pg_dump -Fc -hdb -Upostgres -dpostgres > /srv/backup/postgres.dump
+    now=$(date +"%m_%d_%Y_%H_%M_%S")
+    pg_dump -Fc -hdb -Upostgres -dpostgres > /srv/backup/postgres_$now.dump
+    rm -f /srv/backup/postgres_latest.dump
+    ln -s /srv/backup/postgres_$now.dump /srv/backup/postgres_latest.dump
 fi
 
 echo "Backup done!"
