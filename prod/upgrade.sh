@@ -33,22 +33,22 @@ while [ "$1" != "" ]; do
             ./bin/prod/update.sh -hr
             ;;
         -m | --migrate)
-            docker-compose run app python /srv/app/manage.py migrate --noinput
+            docker-compose exec app python /srv/app/manage.py migrate --noinput
             ;;
         -i | --install)
             docker-compose exec app poetry install --no-root
             ;;
         -f | --front)
-            docker-compose run app python /srv/app/manage.py build-front
+            docker-compose exec app python /srv/app/manage.py build-front
             ;;
         -fi | --front-install)
-            docker-compose run app python /srv/app/manage.py build-front --force-npm --force-bower
+            docker-compose exec app python /srv/app/manage.py build-front --force-npm --force-bower
             ;;
         -d | --doc)
-            docker-compose run app bash /srv/doc/build.sh
+            docker-compose exec app bash /srv/doc/build.sh
             ;;
         -c | --collect)
-            docker-compose run app python manage.py collectstatic --noinput
+            docker-compose exec app python manage.py collectstatic --noinput
             ;;
         -r | --reload)
             touch app/wsgi.py
