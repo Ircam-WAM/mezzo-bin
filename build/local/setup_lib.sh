@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Exit when any command fails
+# We need to stop build if pip fails
 set -e
 
 for module in `ls /srv/lib/`; do
