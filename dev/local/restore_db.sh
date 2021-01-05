@@ -2,9 +2,16 @@
 
 /srv/bin/misc/wait-for-it/wait-for-it.sh -h db -p $DB_PORT;
 
+# Stop execution if some command fails
 set -e
 
 echo "Restoring..."
+
+# Migrate backup to date-based format
+if [ -f /srv/backup/postgres.dump ]; then
+    mv /srv/backup/postgres.dump /srv/backup/postgres_old.dump
+    ln -s /srv/backup/postgres_old.dump /srv/backup/postgres_latest.dump
+fi
 
 # import database functions of type
 if [ ! -z "$MYSQL_ROOT_PASSWORD" ]; then

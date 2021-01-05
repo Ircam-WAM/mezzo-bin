@@ -4,6 +4,15 @@
 # export POSTGRES="$(dpkg --get-selections  | grep postgres 2>&1)"
 # export MYSQL="$(dpkg --get-selections  | grep mysql 2>&1)"
 
+# Stop execution if some command fails
+set -e
+
+# Migrate backup to date-based format
+if [ -f /srv/backup/postgres.dump ]; then
+    mv /srv/backup/postgres.dump /srv/backup/postgres_old.dump
+    ln -s /srv/backup/postgres_old.dump /srv/backup/postgres_latest.dump
+fi
+
 if [ ! -z "$MYSQL_PASSWORD" ]; then
     export MYSQL_PWD=$MYSQL_PASSWORD
     mysqldump $MYSQL_DATABASE -hdb -u$MYSQL_USER | gzip > /srv/backup/mariadb.dump.gz
