@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Exit when any command fails
+set -e
+
 for module in `ls /srv/lib/`; do
 	cd /srv/lib/$module
 	if [ -f 'requirements.txt' ]; then
