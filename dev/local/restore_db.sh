@@ -12,7 +12,8 @@ if [ -f /srv/backup/postgres.dump ]; then
     echo 'A backup without date was found. Moving it to postgres_old.dump'
     mv /srv/backup/postgres.dump /srv/backup/postgres_old.dump
     if [ ! -f /srv/backup/postgres_latest.dump ]; then
-      ln -s /srv/backup/postgres_old.dump /srv/backup/postgres_latest.dump
+      cd /srv/backup
+      ln -s postgres_old.dump postgres_latest.dump
     fi
 fi
 

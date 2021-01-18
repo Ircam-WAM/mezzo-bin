@@ -12,7 +12,8 @@ if [ -f /srv/backup/postgres.dump ]; then
     echo 'A backup without date was found. Moving it to postgres_old.dump'
     mv /srv/backup/postgres.dump /srv/backup/postgres_old.dump
     if [ ! -f /srv/backup/postgres_latest.dump ]; then
-      ln -s /srv/backup/postgres_old.dump /srv/backup/postgres_latest.dump
+      cd /srv/backup
+      ln -s postgres_old.dump postgres_latest.dump
     fi
 fi
 
@@ -23,8 +24,9 @@ elif [ ! -z "$POSTGRES_PASSWORD" ]; then
     export PGPASSWORD=$POSTGRES_PASSWORD
     now=$(date +"%m_%d_%Y_%H_%M_%S")
     pg_dump -Fc -hdb -Upostgres -dpostgres > /srv/backup/postgres_$now.dump
-    rm -f /srv/backup/postgres_latest.dump
-    ln -s /srv/backup/postgres_$now.dump /srv/backup/postgres_latest.dump
+    cd /srv/backup
+    rm -f postgres_latest.dump
+    ln -s postgres_$now.dump postgres_latest.dump
 fi
 
 echo "Backup done!"
