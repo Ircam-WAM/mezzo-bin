@@ -7,7 +7,7 @@ echo `date +\%Y\%m\%d-\%H-\%M-\%S`
 
 ./bin/prod/backup_db.sh
 
-cd "$(dirname "$0")"/../../var
+cd "$(dirname "$0")"/../../var/backup
 
 git add .
 git commit -a -m "update DB and media"
