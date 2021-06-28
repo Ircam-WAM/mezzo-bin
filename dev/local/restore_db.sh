@@ -13,13 +13,13 @@ if [ ! -z "$MYSQL_ROOT_PASSWORD" ]; then
 elif [ ! -z "$POSTGRES_PASSWORD" ]; then
     export PGPASSWORD=$POSTGRES_PASSWORD
     echo "Killing clients..."
-    psql -hdb -Upostgres -dpostgres -c "SELECT pid, (SELECT pg_terminate_backend(pid)) as killed from pg_stat_activity WHERE state LIKE 'idle';"
+    psql -h$POSTGRES_HOST -U$POSTGRES_USER -d$POSTGRES_DB -c "SELECT pid, (SELECT pg_terminate_backend(pid)) as killed from pg_stat_activity WHERE state LIKE 'idle';"
     echo "Dropping db..."
-    dropdb -hdb -Upostgres postgres
+    dropdb -h$POSTGRES_HOST -U$POSTGRES_USER $POSTGRES_DB
     echo "Creating new db..."
-    createdb -hdb -Upostgres -T template0 postgres
+    createdb -h$POSTGRES_HOST -U$POSTGRES_USER -T template0 $POSTGRES_DB
     echo "Importing dump..."
-    pg_restore -C -c -hdb -Upostgres -dpostgres /srv/backup/postgres.dump
+    pg_restore -C -c -h$POSTGRES_HOST -U$POSTGRES_USER -d$POSTGRES_DB /srv/backup/postgres.dump
 fi
 
 echo "Restore done!"

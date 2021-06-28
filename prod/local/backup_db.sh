@@ -12,7 +12,7 @@ if [ ! -z "$MYSQL_PASSWORD" ]; then
     mysqldump $MYSQL_DATABASE -hdb -u$MYSQL_USER | gzip > /srv/backup/mysql.dump.gz
 elif [ ! -z "$POSTGRES_PASSWORD" ]; then
     export PGPASSWORD=$POSTGRES_PASSWORD
-    pg_dump -Fc -hdb -Upostgres -dpostgres > /srv/backup/postgres.dump
+    pg_dump -Fc -h$POSTGRES_HOST -U$POSTGRES_USER -d$POSTGRES_DB > /srv/backup/postgres.dump
 fi
 
 echo "Backup done!"
