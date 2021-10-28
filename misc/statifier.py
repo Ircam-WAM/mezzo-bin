@@ -12,12 +12,12 @@ class Statifier:
 
   def wget(self, language, dir):
     command = 'wget -q --mirror -p --adjust-extension --header="Accept-Language: %s" -e robots=off --base=./ -k -P %s https://%s' % (language, dir, self.domain)
-    print(command)
+    # print(command)
     os.system(command)
 
   def sed(self, dir, rule):
     command = "find %s -type f -print0 | xargs -0 sed -r -i -e '%s'" % (dir, rule)
-    print(command)
+    # print(command)
     os.system(command)
 
   def fix_languages(self, dir, language):
