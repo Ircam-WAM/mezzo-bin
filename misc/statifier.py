@@ -31,7 +31,6 @@ class Statifier:
           path = root + os.sep + filename
           rel_root = root.split('/')[2:]
           rel_root = language + '/' + '/'.join(rel_root)
-          print(rel_root)
 
           f = open(path, 'rt')
           content = f.read()
