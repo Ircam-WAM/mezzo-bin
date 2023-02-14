@@ -2,6 +2,7 @@
 
 # /srv/bin/misc/wait-for-it/wait-for-it.sh -h db -p $DB_PORT;
 
+# Stop execution if some command fails
 set -e
 
 DIR=/srv/backup/
@@ -18,6 +19,9 @@ if [ ! -z "$MYSQL_ROOT_PASSWORD" ]; then
     fi
 elif [ ! -z "$POSTGRES_PASSWORD" ]; then
     export PGPASSWORD=$POSTGRES_PASSWORD
+    if [ ! -z "$POSTGRES_DB" ]; then
+        export POSTGRES_NAME=$POSTGRES_DB
+    fi
     echo "Killing clients..."
     psql -hdb -Upostgres -d$POSTGRES_NAME -c "SELECT pid, (SELECT pg_terminate_backend(pid)) as killed from pg_stat_activity WHERE state LIKE 'idle';"
     echo "Dropping db..."

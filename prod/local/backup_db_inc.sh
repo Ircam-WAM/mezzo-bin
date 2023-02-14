@@ -7,16 +7,26 @@
 # Stop execution if some command fails
 set -e
 
+# Migrate backup to date-based format
+if [ -f /srv/backup/postgres.dump ]; then
+    echo 'A backup without date was found. Moving it to postgres_old.dump'
+    mv /srv/backup/postgres.dump /srv/backup/postgres_old.dump
+    if [ ! -f /srv/backup/postgres_latest.dump ]; then
+      cd /srv/backup
+      ln -s postgres_old.dump postgres_latest.dump
+    fi
+fi
+
 if [ ! -z "$MYSQL_PASSWORD" ]; then
     export MYSQL_PWD=$MYSQL_PASSWORD
     mysqldump $MYSQL_DATABASE -hdb -u$MYSQL_USER | gzip > /srv/backup/mysql.dump.gz
 elif [ ! -z "$POSTGRES_PASSWORD" ]; then
     export PGPASSWORD=$POSTGRES_PASSWORD
-    if [ ! -z "$POSTGRES_DB" ]; then
-        export POSTGRES_NAME=$POSTGRES_DB
-    fi
     now=$(date +"%m_%d_%Y_%H_%M_%S")
-    pg_dump -Fc -hdb -Upostgres -d$POSTGRES_NAME > /srv/backup/$POSTGRES_NAME-$now.dump
+    pg_dump -Fc -hdb -Upostgres -dpostgres > /srv/backup/postgres_$now.dump
+    cd /srv/backup
+    rm -f postgres_latest.dump
+    ln -s postgres_$now.dump postgres_latest.dump
 fi
 
 echo "Backup done!"
