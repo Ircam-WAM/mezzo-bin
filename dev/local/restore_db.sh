@@ -6,7 +6,7 @@
 set -e
 
 DIR=/srv/backup/
-FILE=`ls -t $DIR/*.sql* | head -1`
+FILE=`ls -t $DIR/* | head -1`
 
 echo "Restoring $FILE"
 
@@ -28,7 +28,7 @@ elif [ ! -z "$POSTGRES_PASSWORD" ]; then
         echo "Killing clients..."
         psql -hdb -Upostgres -d$POSTGRES_NAME -c "SELECT pid, (SELECT pg_terminate_backend(pid)) as killed from pg_stat_activity WHERE state LIKE 'idle';"
         echo "Dropping db..."
-        dropdb -hdb -Upostgres $POSTGRES_NAME
+        # dropdb -hdb -Upostgres $POSTGRES_NAME
     else
         echo "Database does not exist"
         echo "Creating new db..."

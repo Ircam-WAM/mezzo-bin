@@ -10,7 +10,7 @@
 
 cd "$(dirname "$0")"/../../
 
-bin/misc/fix_var_perms.sh
+# bin/misc/fix_var_perms.sh
 
 # Update main project
 git pull
@@ -18,10 +18,6 @@ git pull
 curr_branch=$(git symbolic-ref --short HEAD)
 
 echo $curr_branch
-if [ $curr_branch != "master" ] && [ $curr_branch != "dev" ];
-then
-    curr_branch="dev"
-fi
 
 # checkout new submodule
 git submodule update --init
