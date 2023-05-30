@@ -1,3 +1,4 @@
+#!/bin/bash
 python /srv/app/manage.py rename_app organization-core organization_core
 python /srv/app/manage.py rename_app organization-agenda organization_agenda
 python /srv/app/manage.py rename_app organization-formats organization_formats
