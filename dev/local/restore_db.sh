@@ -22,23 +22,23 @@ elif [ ! -z "$POSTGRES_PASSWORD" ]; then
     if [ ! -z "$POSTGRES_DB" ]; then
         export POSTGRES_NAME=$POSTGRES_DB
     fi
-    if [ "$( psql -hdb -Upostgres -XtAc "SELECT 1 FROM pg_database WHERE datname='$POSTGRES_NAME'" )" = '1' ]
+    if [ "$( psql -hdb -U$POSTGRES_USER -XtAc "SELECT 1 FROM pg_database WHERE datname='$POSTGRES_NAME'" )" = '1' ]
     then
         echo "Database already exists"
         echo "Killing clients..."
-        psql -hdb -Upostgres -d$POSTGRES_NAME -c "SELECT pid, (SELECT pg_terminate_backend(pid)) as killed from pg_stat_activity WHERE state LIKE 'idle';"
+        psql -hdb -U$POSTGRES_USER -d$POSTGRES_NAME -c "SELECT pid, (SELECT pg_terminate_backend(pid)) as killed from pg_stat_activity WHERE state LIKE 'idle';"
         echo "Dropping db..."
         # dropdb -hdb -Upostgres $POSTGRES_NAME
     else
         echo "Database does not exist"
         echo "Creating new db..."
-        createdb -hdb -Upostgres -T template0 $POSTGRES_NAME
+        createdb -hdb -U$POSTGRES_USER -T template0 $POSTGRES_NAME
     fi
     echo "Importing dump..."
     if [[ $FILE == *".gz" ]]; then
-        gunzip < $FILE | psql -hdb -Upostgres -d$POSTGRES_NAME
+        gunzip < $FILE | psql -hdb -U$POSTGRES_USER -d$POSTGRES_NAME
     elif [[ $FILE == *".dump" ]]; then
-        pg_restore -c -C -hdb -Upostgres -d$POSTGRES_NAME < $FILE
+        pg_restore -c -C -hdb -U$POSTGRES_USER -d$POSTGRES_NAME < $FILE
     fi
 fi
 
