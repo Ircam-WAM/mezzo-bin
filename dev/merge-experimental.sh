@@ -5,9 +5,9 @@
 
 cd "$(dirname "$0")"/../../
 
-git submodule foreach --recursive 'echo $name; git merge $(git config -f $toplevel/.gitmodules submodule.$name.branch-develop)'
+git submodule foreach --recursive 'echo $name; git merge $(git config -f $toplevel/.gitmodules submodule.$name.branch-experimental)'
 
 git commit -a -m "update submodules"
 
-git merge develop
+git merge experimental
 
