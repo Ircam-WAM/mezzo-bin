@@ -10,4 +10,3 @@ git submodule foreach --recursive 'echo $name; git merge $(git config -f $toplev
 git commit -a -m "update submodules"
 
 git merge develop
-
