@@ -43,7 +43,7 @@ curr_branch=$(git symbolic-ref --short HEAD)
 echo $curr_branch
 if [ $curr_branch != "master" ] && [ $curr_branch != "dev" ];
 then
-    curr_branch="dev"
+    curr_branch="master"
 fi
 
 # checkout new submodule
