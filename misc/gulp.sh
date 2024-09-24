@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker-compose run app python /srv/app/manage.py gulp
+docker compose run app python /srv/app/manage.py gulp

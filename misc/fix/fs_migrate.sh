@@ -1,6 +1,6 @@
 #!/bin/sh
 
-docker-compose stop
+docker compose stop
 mv data var
 mkdir var/lib
 sudo mv var/postgresql var/lib

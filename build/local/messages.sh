@@ -1,4 +1,4 @@
-# docker-compose run app python manage.py compilemessages
+# docker compose run app python manage.py compilemessages
 
 cd /srv
 
